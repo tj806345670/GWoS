@@ -19,8 +19,6 @@ pairedTtest<-function (phenoname,widedata,datatype) {
     result[c,'stdnonOC']<-sd(tmp[,2])
     result[c,'md']<-fit[["estimate"]][["mean of the differences"]]
     result[c,'se2']<- (fit[["stderr"]])^2
-    result[c,'df']<-fit[["parameter"]][["df"]]
-
   }
   return(result)
 }

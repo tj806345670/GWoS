@@ -32,33 +32,3 @@ resultcog<-pairedTtest(cognames,mergedata,'Behavior')
 resultenv<-pairedTtest(envnames,mergedata,'PEE')
 resulttract<-pairedTtest(tractnames,mergedata,'Tracts')
 
-########### pool the results according to Rubin's Rules
-nim<-10 # number of imputation
-md <- do.call(cbind, lapply(result10, function(df) df[['md']]))
-mdpool<-rowMeans(md) 
-SE2<-do.call(cbind, lapply(result10, function(df) df[['se2']]))
-Vw<- rowMeans(SE2)
-Vb<- rowSums((md-mdpool)^2)/(nim-1)
-Vtotal<- Vw+Vb+(Vb/nim)
-SEpool<-sqrt(Vtotal)
-Waldpool<-mdpool/SEpool
-lambda<- (Vb+(Vb/nim))/Vtotal
-dfold<- (nim-1)/(lambda^2)
-n=resultcog10[[im]][1,'NOC'] 
-k=1 #k the number of parameters to fit 1 for paired T-test
-dfobs<- ( (n-k+1)/(n-k+3) )*(n-k)*(1-lambda)
-dfadj<- (dfold*dfobs)/(dfold+dfobs)# adjusted df
-pvalue<- 2*pt(abs(Waldpool),dfadj,lower.tail = F)
-
-result$pooledP<-pvalue
-result$FMI=FMI
-result$mdpool<-mdpool
-t_critical <- qt(1 - 0.05/2, df = dfadj) 
-CI<-data.frame(CI1=mdpool-(t_critical*SEpool),CI2=mdpool+(t_critical*SEpool))
-TLCI<-apply(CI,1,min)/SEpool
-TUCI<-apply(CI,1,max)/SEpool
-result$Tpool<-Waldpool
-result$Cohendpool<-result$Tpool/sqrt(result$NOC)
-result$dfadj<- dfadj
-result$Cohendpool_LCI<- TLCI/sqrt(result$NOC)
-result$Cohendpool_UCI<- TUCI/sqrt(result$NOC)

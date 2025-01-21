@@ -20,11 +20,7 @@ pairedTtest<-function (phenoname,widedata,datatype) {
     result[c,'md']<-fit[["estimate"]][["mean of the differences"]]
     result[c,'se2']<- (fit[["stderr"]])^2
     result[c,'df']<-fit[["parameter"]][["df"]]
-    result[c,'Cohend']<-lsr::cohensD(tmp$pheno1,tmp$pheno2,method ='paired')
-    TLCI<-fit[["conf.int"]][1]/fit[["stderr"]]
-    TUCI<-fit[["conf.int"]][2]/fit[["stderr"]]
-    result[c,'Cohend_LCI']<-TLCI/sqrt(result[c,'NOC'])
-    result[c,'Cohend_UCI']<-TUCI/sqrt(result[c,'NOC'])    
+
   }
   return(result)
 }

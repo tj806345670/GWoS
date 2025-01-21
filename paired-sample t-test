@@ -22,7 +22,4 @@ pairedTtest<-function (phenoname,widedata,datatype) {
   }
   return(result)
 }
-resultcog<-pairedTtest(cognames,mergedata,'Behavior')
-resultenv<-pairedTtest(envnames,mergedata,'PEE')
-resulttract<-pairedTtest(tractnames,mergedata,'Tracts')
 

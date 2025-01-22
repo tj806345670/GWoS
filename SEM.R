@@ -1,3 +1,5 @@
+library(tidyr)
+library(lavaan)
 ##### for SEM
 mod<-'
   FSES =~ ME+PE+PO+MO+FR+ITN+UrS

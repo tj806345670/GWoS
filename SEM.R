@@ -437,6 +437,12 @@ Total_IRI_PT:=TotalIndirect_IRI_PT+b8
 Total_BFI_O:=TotalIndirect_BFI_O+b9
 Total_BIS_CI:=TotalIndirect_BIS_CI+b10
 
+TotalIndIMG_LFA:=o1*i1e1+o2*i1e2+o3*i1e3+o4*i1e4+o5*i1e5
+TotalIndIMG_LReHo:=o1*i2e1+o2*i2e2+o3*i2e3+o4*i2e4+o5*i2e5
+TotalIndIMG_CBRGMV:=o1*i3e1+o2*i3e2+o3*i3e3+o4*i3e4+o5*i3e5
+TotalIndIMG_CBLGMV:=o1*i4e1+o2*i4e2+o3*i4e3+o4*i4e4+o5*i4e5
+TotalIndIMG_PAT_R:=o1*i5e1+o2*i5e2+o3*i5e3+o4*i5e4+o5*i5e5
+
 Total_LFA:=TotalIndIMG_LFA+c1
 Total_LReHo:=TotalIndIMG_LReHo+c2
 Total_CBRGMV:=TotalIndIMG_CBRGMV+c3
